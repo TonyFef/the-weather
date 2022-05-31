@@ -5,6 +5,9 @@
     padding: 5%;
 }
 
+.input-sum {
+    margin-bottom: 20px;
+}
 .input-sum__text {
     width: 20%;
     color: rgb(229, 241, 241);
@@ -21,7 +24,17 @@
     width: 20%;
     margin-right: 2%;
 }
-
+/* .card {
+    max-width: 20%;
+} */
+.card-title {
+    display: block;
+}
+.cards-grid{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 5%;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

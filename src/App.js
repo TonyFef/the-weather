@@ -6,9 +6,11 @@ import { Input } from "./Components/Input";
 function App() {
     return (
         <div className="App">
-            <Header />
+            {/* <Header /> */}
             <Input />
-            <Main />
+            <div className="cards-grid">
+                <Main />
+            </div>
         </div>
     );
 }
