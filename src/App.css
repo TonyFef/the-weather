@@ -43,6 +43,11 @@
   font-size: 24px;
   vertical-align: middle;
 }
+.card-body__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 
 /* .App-logo {
