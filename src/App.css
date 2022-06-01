@@ -24,9 +24,6 @@
     width: 20%;
     margin-right: 2%;
 }
-/* .card {
-    max-width: 20%;
-} */
 .card-title {
     display: block;
 }
@@ -35,6 +32,19 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 5%;
 }
+.card-img{
+  width: 36px;
+  height: 36px;
+}
+.card-temperature {
+  font-size: 36px;
+}
+.card-temperature__measure {
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
