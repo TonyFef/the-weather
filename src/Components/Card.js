@@ -76,7 +76,7 @@ export const Card = ({ item }) => {
                     </div>
                     <div className="card-body__time">
                         <h5 className="card-time">{timeFormatted}</h5>
-                        {item.pinned ? <img className="card-body__footer--img" src={filledPin} alt="Pin this" /> : null}
+                        {item.pinned ? <img className="card-body__time--img" src={filledPin} alt="Pin this" /> : null}
                     </div>
 
                     <h3 className="card-temperature">

@@ -22,12 +22,17 @@ export const Input = () => {
                     timezone: data.timezone,
                     country: data.sys.country,
                     pinned: false,
+                    concreteWeather: data.weather[0].description,
                 };
             })
             .then((newItem) => {
-                setCitiesListState((prev) => {
-                    return [newItem, ...prev];
-                });
+                const pinnedItems = _citiesListState.filter((item) => item.pinned === true);
+
+                if (pinnedItems.length !== 0) {
+                    setCitiesListState([newItem, ...pinnedItems]);
+                } else {
+                    setCitiesListState([newItem]);
+                }
             });
     };
     return (
