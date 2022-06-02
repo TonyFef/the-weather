@@ -33,6 +33,9 @@ export const Input = () => {
                 } else {
                     setCitiesListState([newItem]);
                 }
+            })
+            .then(() => {
+                setTypedCityName("");
             });
     };
     return (
@@ -42,6 +45,7 @@ export const Input = () => {
                     <div className="input-sum__text">Show the weather in ...</div>
                     <div className="input-group">
                         <input
+                            value={typedCityName}
                             type="text"
                             className="input-group__field"
                             placeholder="Search for the city"

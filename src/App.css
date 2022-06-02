@@ -4,7 +4,23 @@
     height: 100vh;
     padding: 5%;
 }
-
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+button {
+    padding: 0;
+}
 .input-sum {
     margin-bottom: 20px;
 }
@@ -31,7 +47,7 @@
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    column-gap: 5%;
+    column-gap: 3%;
     row-gap: 5%;
 }
 .card-img {
@@ -46,6 +62,10 @@
     vertical-align: middle;
 }
 .card-body__header,
+.card-body__time {
+    margin-bottom: 15px;
+}
+.card-body__header,
 .card-body__footer,
 .card-body__time {
     display: flex;
@@ -56,7 +76,7 @@
     background-color: rgb(96, 94, 221);
     color: white;
     padding: 10px;
-    border-radius: 5%;
+    border-radius: 20%;
 }
 .card-body__footer--img,
 .card-body__time--img {
@@ -67,4 +87,93 @@
     border: none;
     background-color: inherit;
 }
-
+.card {
+    box-shadow: 15px 15px 10px rgba(141, 134, 134, 0.25);
+}
+@media (max-width: 1500px) {
+    .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .input-sum__text {
+        width: 100%;
+    }
+}
+@media (max-width: 1200px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .input-group__field {
+        width: 40%;
+    }
+}
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 576px) {
+    .input-sum__text {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .input-group__field {
+        width: 60%;
+    }
+    input {
+        font-size: 14px;
+    }
+    .btn {
+        padding: 4px 10px;
+        font-size: 14px;
+    }
+    .card-body {
+        padding: 12px;
+    }
+    .card-body__header {
+        margin-bottom: 10px;
+    }
+    .card-title {
+        font-size: 20px;
+    }
+    .card-country {
+        padding: 6px;
+        font-size: 14px;
+    }
+    .card-time {
+        font-size: 14px;
+    }
+}
+@media (max-width: 500px) {
+    .card-title {
+        font-size: 16px;
+    }
+    .card-country {
+        font-size: 12px;
+    }
+    .card-temperature {
+        font-size: 28px;
+    }
+    .card-temperature__measure {
+        font-size: 18px;
+    }
+    .card-img {
+        width: 28px;
+        height: 28px;
+    }
+    .card-body__footer--title {
+        font-size: 14px;
+    }
+    .card-body__footer--img,
+    .card-body__time--img {
+        width: 16px;
+        height: 16px;
+    }
+}
+@media (max-width: 450px) {
+    .cards-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    /* .input-sum__text {
+        width: 100%;
+    } */
+}
