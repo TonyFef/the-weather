@@ -1,6 +1,6 @@
 import { APIkey } from "./defaults";
 import { useEffect, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import {cityNameState, cityInfoState } from "../state/atoms";
 
 export const Input = () => {
@@ -36,8 +36,6 @@ export const Input = () => {
                         country: data.sys.country,
                     };
                 });
-
-                console.log(data);
             });
     };
     return (
@@ -50,7 +48,7 @@ export const Input = () => {
                             type="text"
                             className="input-group__field"
                             placeholder="Search for the city"
-                            aria-label="Search for the city"
+                            // aria-label="Search for the city"
                             onChange={(e) => {
                                 setTempCityName(e.target.value);
                             }}

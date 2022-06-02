@@ -30,3 +30,33 @@ export const cityInfoState = atom({
         country: "RU",
     },
 });
+export const citiesListState = atom({
+    key: "citiesListState",
+    default: [
+        {
+            id: 524901,
+            name: "Moscow",
+            temp: "",
+            descr: "",
+            timezone: "",
+            country: "RU",
+        },
+        {
+            id: 5128581,
+            name: "New York",
+            temp: "",
+            descr: "",
+            timezone: "",
+            country: "",
+        },
+        {
+            id: 625144,
+            name: "Minsk",
+            temp: "",
+            descr: "",
+            timezone: "",
+            country: "",
+        },
+    ],
+});
+

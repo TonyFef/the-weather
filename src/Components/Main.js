@@ -1,35 +1,46 @@
-import React from "react";
-import { useRecoilValue} from "recoil";
-import { cityInfoState } from "../state/atoms";
-
-import sun from "../sun.png";
+import { useEffect } from "react";
+import { APIkey } from "./defaults";
+import { useRecoilState } from "recoil";
+import { citiesListState } from "../state/atoms";
+import { Card } from "./Card";
 
 export const Main = () => {
-    const now = new Date();
+    const [_citiesListState, setCitiesListState] = useRecoilState(citiesListState);
 
-    const smth = useRecoilValue(cityInfoState);
-    const timeFormatted = now.toLocaleTimeString().slice(0, -3);
+    useEffect(() => {
+        _citiesListState.forEach((item) => {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${item.name}&appid=${APIkey}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    return data;
+                })
+                .then((newData) => {
+                    setCitiesListState((prev) => {
+                        const prevArrElem = prev.filter((item) => item.name != newData.name);
+                        return [
+                            ...prevArrElem,
+                            {
+                                id: newData.id,
+                                name: newData.name,
+                                descr: newData.weather[0].main,
+                                temp: Math.trunc(+newData.main.temp - 273),
+                                timezone: newData.timezone,
+                                country: newData.sys.country,
+                            },
+                        ];
+                    });
+                });
+            // .then(() => {
+            //     console.log(_citiesListState);
+            // })
+        });
+    }, []);
 
     return (
         <>
-            <div className="card">
-                <div className="border-primary">
-                    <div className="card-body">
-                        <div className="card-body__header">
-                            <h5 className="card-title">{smth.name}</h5>
-                            <h6>{smth.country}</h6>
-                        </div>
-
-                        <h5 className="card-title">{timeFormatted}</h5>
-                        <h3 className="card-temperature">
-                            {smth.temp}
-                            <span className="card-temperature__measure">&#8451;</span>
-                        </h3>
-                        <img className="card-img" src={sun} alt="" />
-                        <span className="card-title">{smth.descr}</span>
-                    </div>
-                </div>
-            </div>
+            {_citiesListState.map((item) => {
+                return <Card item={item} key={item.id} />;
+            })}
         </>
     );
 };

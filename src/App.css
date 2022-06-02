@@ -26,6 +26,7 @@
 }
 .card-title {
     display: block;
+    margin: 0;
 }
 .cards-grid{
   display: grid;
@@ -43,10 +44,24 @@
   font-size: 24px;
   vertical-align: middle;
 }
-.card-body__header{
+.card-body__header, .card-body__footer{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.card-country{
+  background-color: rgb(96, 94, 221);
+  color: white;
+  padding: 10px;
+  border-radius: 5%;
+}
+.card-body__footer--img{
+  width: 24px;
+  height: 24px;
+}
+.card-body__footer--button{
+  border: none;
+  background-color: inherit;
 }
 
 
