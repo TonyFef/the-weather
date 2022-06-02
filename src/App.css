@@ -28,42 +28,43 @@
     display: block;
     margin: 0;
 }
-.cards-grid{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 5%;
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 5%;
 }
-.card-img{
-  width: 36px;
-  height: 36px;
+.card-img {
+    width: 36px;
+    height: 36px;
 }
 .card-temperature {
-  font-size: 36px;
+    font-size: 36px;
 }
 .card-temperature__measure {
-  font-size: 24px;
-  vertical-align: middle;
+    font-size: 24px;
+    vertical-align: middle;
 }
-.card-body__header, .card-body__footer{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.card-body__header,
+.card-body__footer,
+.card-body__time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.card-country{
-  background-color: rgb(96, 94, 221);
-  color: white;
-  padding: 10px;
-  border-radius: 5%;
+.card-country {
+    background-color: rgb(96, 94, 221);
+    color: white;
+    padding: 10px;
+    border-radius: 5%;
 }
-.card-body__footer--img{
-  width: 24px;
-  height: 24px;
+.card-body__footer--img {
+    width: 24px;
+    height: 24px;
 }
-.card-body__footer--button{
-  border: none;
-  background-color: inherit;
+.card-body__footer--button {
+    border: none;
+    background-color: inherit;
 }
-
 
 /* .App-logo {
   height: 40vmin;

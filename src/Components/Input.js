@@ -1,40 +1,32 @@
 import { APIkey } from "./defaults";
-import { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
-import {cityNameState, cityInfoState } from "../state/atoms";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { citiesListState } from "../state/atoms";
 
 export const Input = () => {
-    useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=${APIkey}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setTempInfo((prevObj) => {
-                    return { ...prevObj, descr: data.weather[0].main, temp: Math.trunc(+data.main.temp - 273) };
-                });
-            });
-    }, []);
-
-
-    const [tempCityName, setTempCityName] = useState("");
-    const setTempInfo = useSetRecoilState(cityInfoState);
-    const setCityName = useSetRecoilState(cityNameState);
+    const [_citiesListState, setCitiesListState] = useRecoilState(citiesListState);
+    const [typedCityName, setTypedCityName] = useState("");
 
     const fetchData = (e) => {
         e.preventDefault();
-        setCityName(tempCityName);
 
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${tempCityName}&appid=${APIkey}`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${typedCityName}&appid=${APIkey}`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                setTempInfo((prevObj) => {
-                    return {
-                        ...prevObj,
-                        name: data.name,
-                        descr: data.weather[0].main,
-                        temp: Math.trunc(+data.main.temp - 273),
-                        country: data.sys.country,
-                    };
+                return {
+                    id: data.id,
+                    name: data.name,
+                    descr: data.weather[0].main,
+                    temp: Math.trunc(+data.main.temp - 273),
+                    timezone: data.timezone,
+                    country: data.sys.country,
+                    pinned: false,
+                };
+            })
+            .then((newItem) => {
+                setCitiesListState((prev) => {
+                    return [newItem, ...prev];
                 });
             });
     };
@@ -48,9 +40,8 @@ export const Input = () => {
                             type="text"
                             className="input-group__field"
                             placeholder="Search for the city"
-                            // aria-label="Search for the city"
                             onChange={(e) => {
-                                setTempCityName(e.target.value);
+                                setTypedCityName(e.target.value);
                             }}
                         />
                         <button className="btn btn-outline-secondary" type="submit" id="button-addon2">

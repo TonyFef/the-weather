@@ -9,16 +9,17 @@ export const Main = () => {
 
     useEffect(() => {
         _citiesListState.forEach((item) => {
+            // console.log(item);
             fetch(`https://api.openweathermap.org/data/2.5/weather?q=${item.name}&appid=${APIkey}`)
                 .then((res) => res.json())
                 .then((data) => {
+                    // console.log(data);
                     return data;
                 })
                 .then((newData) => {
                     setCitiesListState((prev) => {
                         const prevArrElem = prev.filter((item) => item.name != newData.name);
                         return [
-                            ...prevArrElem,
                             {
                                 id: newData.id,
                                 name: newData.name,
@@ -26,13 +27,16 @@ export const Main = () => {
                                 temp: Math.trunc(+newData.main.temp - 273),
                                 timezone: newData.timezone,
                                 country: newData.sys.country,
+                                pinned: false,
+                                concreteWeather: newData.weather[0].description
                             },
+                            ...prevArrElem,
                         ];
                     });
-                });
-            // .then(() => {
-            //     console.log(_citiesListState);
-            // })
+                })
+                // .then(() => {
+                //     console.log(_citiesListState);
+                // });
         });
     }, []);
 
