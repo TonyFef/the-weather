@@ -2,6 +2,7 @@ import { APIkey } from "./defaults";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { citiesListState } from "../state/atoms";
+import { logRoles } from "@testing-library/react";
 
 export const Input = () => {
     const [_citiesListState, setCitiesListState] = useRecoilState(citiesListState);
@@ -14,6 +15,7 @@ export const Input = () => {
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
+                // console.log(data);
                 return {
                     id: data.id,
                     name: data.name,

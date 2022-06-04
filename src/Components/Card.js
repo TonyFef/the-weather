@@ -18,18 +18,31 @@ export const Card = ({ item }) => {
     const [_citiesListState, setCitiesListState] = useRecoilState(citiesListState);
     const [image, setImage] = useState("");
 
-    const now = new Date();
-    const timeFormatted = now.toLocaleTimeString().slice(0, -3);
+    let date = new Date();
+    date.setHours(date.getHours() + ((item.timezone - 10800) / 3600));
+    const time = date.toLocaleTimeString().slice(0, -3)
 
     const makePinned = (item) => {
         if (!item.pinned) {
             setCitiesListState((prev) => {
                 const items = prev.filter((elem) => elem.id !== item.id);
-                return [{ id: item.id, name: item.name, descr: item.descr, pinned: !item.pinned, temp: item.temp, country: item.country }, ...items];
+                return [
+                    {
+                        id: item.id,
+                        name: item.name,
+                        descr: item.descr,
+                        pinned: !item.pinned,
+                        temp: item.temp,
+                        country: item.country,
+                        timezone: item.timezone,
+                    },
+                    ...items,
+                ];
             });
         } else {
             setCitiesListState((prev) => {
                 const items = prev.filter((elem) => elem.id !== item.id);
+
                 return items;
             });
         }
@@ -75,7 +88,7 @@ export const Card = ({ item }) => {
                         <h6 className="card-country">{item.country}</h6>
                     </div>
                     <div className="card-body__time">
-                        <h5 className="card-time">{timeFormatted}</h5>
+                        <h5 className="card-time">{time}</h5>
                         {item.pinned ? <img className="card-body__time--img" src={filledPin} alt="Pin this" /> : null}
                     </div>
 
